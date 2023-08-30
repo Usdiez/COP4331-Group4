@@ -18,7 +18,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select FirstName, LastName, Email, PhoneNumber from Contacts where FirstName like ? and LastName like ? and Email like ? and PhoneNumber like ? and UserID=?");
+		$stmt = $conn->prepare("select ID, FirstName, LastName, Email, PhoneNumber from Contacts where FirstName like ? and LastName like ? and Email like ? and PhoneNumber like ? and UserID=?");
 		$firstName = "%" . $firstName . "%";
 		$lastName = "%" . $lastName . "%";
 		$email = "%" . $email . "%";
@@ -35,11 +35,12 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
+			$rowID = $row["ID"];
 			$rowFirstName = $row["FirstName"];
             $rowLastName = $row["LastName"];
             $rowEmail = $row["Email"];
             $rowPhoneNumber = $row["PhoneNumber"];
-			$searchResults .= '{' . '"firstName":' . '"' . $rowFirstName . '",' . '"lastName":' . '"' . $rowLastName . '",' . '"email":' . '"' . $rowEmail . '",' . '"phoneNumber":' . '"' . $rowPhoneNumber . '"' . '}';
+			$searchResults .= '{' . '"ID":' . '"' . $rowID . '",' . '"firstName":' . '"' . $rowFirstName . '",'  . '"lastName":' . '"' . $rowLastName . '",' . '"email":' . '"' . $rowEmail . '",' . '"phoneNumber":' . '"' . $rowPhoneNumber . '"' . '}';
 		}
 		
 		if( $searchCount == 0 )
