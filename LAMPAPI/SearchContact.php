@@ -1,22 +1,31 @@
 <?php
 
 	$inData = getRequestInfo();
-	
+
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"];
+	$email = $inData["email"];
+	$phoneNumber = $inData["phoneNumber"];
+	$userId = $inData["userId"];
+
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	$conn = new mysqli("localhost", "apiUser", "COP4331Gfour", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Colors where Name like ? and UserID=?");
-		$colorName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $colorName, $inData["userId"]);
+		$stmt = $conn->prepare("select FirstName, LastName, Email, PhoneNumber from Contacts where FirstName like ? and LastName like ? and Email like ? and PhoneNumber like ? and UserID=?");
+		$firstName = "%" . $firstName . "%";
+		$lastName = "%" . $lastName . "%";
+		$email = "%" . $email . "%";
+		$phoneNumber = "%" . $phoneNumber . "%";
+		$stmt->bind_param("ssssi", $firstName, $lastName, $email, $phoneNumber, $userId);
 		$stmt->execute();
-		
+
 		$result = $stmt->get_result();
 		
 		while($row = $result->fetch_assoc())
