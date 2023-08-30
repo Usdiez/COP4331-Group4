@@ -7,7 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+	$conn = new mysqli("localhost", "apiUser", "COP4331Gfour", "COP4331"); 	
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
@@ -21,7 +21,12 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
+			// UPDATE Last Login
+			$updateStmt = $conn->prepare("UPDATE Users SET DateLastLoggedIn = CURRENT_TIMESTAMP WHERE Login=? AND Password =?");
+			$updateStmt->bind_param("ss", $inData["login"], $inData["password"]);
+			$updateStmt->execute();
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			$updateStmt->close();
 		}
 		else
 		{
