@@ -26,6 +26,7 @@
 			$updateStmt->bind_param("ss", $inData["login"], $inData["password"]);
 			$updateStmt->execute();
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			$updateStmt->close();
 		}
 		else
 		{
