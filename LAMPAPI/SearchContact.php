@@ -35,7 +35,11 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
+			$rowFirstName = $row["FirstName"];
+            $rowLastName = $row["LastName"];
+            $rowEmail = $row["Email"];
+            $rowPhoneNumber = $row["PhoneNumber"];
+			$searchResults .= '{' . '"firstName":' . '"' . $rowFirstName . '",' . '"lastName":' . '"' . $rowLastName . '",' . '"email":' . '"' . $rowEmail . '",' . '"phoneNumber":' . '"' . $rowPhoneNumber . '"' . '}';
 		}
 		
 		if( $searchCount == 0 )
