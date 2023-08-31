@@ -183,3 +183,57 @@ function searchColor()
 	}
 	
 }
+
+function registerAccount()
+{
+	userId = 0;
+	// firstName = "";
+	// lastName = "";
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
+	let login = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
+	var hash = md5( password );
+	
+	document.getElementById("registerResult").innerHTML = "";
+
+	var tmp = {firstName:firstName,lastName:lastName,login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/Register.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{		
+					document.getElementById("registerResult").innerHTML = "Register failed, wtf";
+					return;
+				}
+				
+				// Not sure about this, we save it earlier
+				// firstName = jsonObject.firstName;
+				// lastName = jsonObject.lastName;
+
+				saveCookie();
+	
+				window.location.href = "contact.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
+	}
+
+}
