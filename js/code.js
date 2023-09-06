@@ -1,28 +1,36 @@
-const urlBase = 'http://COP4331-5.com/LAMPAPI';
+const urlBase = 'http://cop4331group4.xyz/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
 let firstName = "";
 let lastName = "";
 
+// Function to login user
 function doLogin()
 {
+	// reset userId, firstName, lastName
 	userId = 0;
 	firstName = "";
 	lastName = "";
 	
+
+	
+	// retrieve login and password values from the HTML elements
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
 	
+	var hash = md5( password );
+		
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	// prepare the payload
+	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
+	// define the URL for login
 	let url = urlBase + '/Login.' + extension;
 
+	// initialize a new XMLHTTPRequest
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -32,9 +40,11 @@ function doLogin()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
+				// Parse the response received from server
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
 		
+				// if userId < 1, login failed
 				if( userId < 1 )
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
@@ -44,9 +54,10 @@ function doLogin()
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
+				// save the cookie and redirect to contact.html
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "contact.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -58,6 +69,7 @@ function doLogin()
 
 }
 
+// Function to save cookie
 function saveCookie()
 {
 	let minutes = 20;
@@ -66,6 +78,7 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
+// Function to read cookie
 function readCookie()
 {
 	userId = -1;
@@ -89,6 +102,7 @@ function readCookie()
 		}
 	}
 	
+	// if userId < 0, redirect to index.html
 	if( userId < 0 )
 	{
 		window.location.href = "index.html";
@@ -99,24 +113,35 @@ function readCookie()
 	}
 }
 
+// Function to logout user
 function doLogout()
 {
+	// reset userId, firstName, lastName and cookie
 	userId = 0;
 	firstName = "";
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	// redirect to index.html
 	window.location.href = "index.html";
 }
 
-function addColor()
+// Function to add contact
+function addContact()
 {
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	// retrieve contact from HTML element
+	let firstName = document.getElementById("firstName").value;
+	let lastName = document.getElementById("lastName").value;
+	let phoneNumber = document.getElementById("phoneNumber").value;
+	let email = document.getElementById("email").value;
 
-	let tmp = {color:newColor,userId,userId};
+	document.getElementById("contactAddResult").innerHTML = "";
+
+	// prepare payload
+	let tmp = {firstName:firstName,lastName:lastName,email:email,phoneNumber:phoneNumber,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/AddColor.' + extension;
+	// define URL for adding contact
+	let url = urlBase + '/AddContact.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -127,29 +152,37 @@ function addColor()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				// Contact has been added successfully
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 	
 }
 
-function searchColor()
-{
+// Function to search contact
+function searchContact()
+{	
+	// retrieve search text from HTML element
 	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
-	
-	let colorList = "";
 
+	// clear the search result
+	document.getElementById("contactSearchResult").innerHTML = "";
+	
+	// clear the list
+	let contactList = "";
+
+	// prepare payload
 	let tmp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/SearchColors.' + extension;
+	// define URL for searching Contacts
+	let url = urlBase + '/SearchContacts.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -160,26 +193,84 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				// contact(s) has been retrieved
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
-					colorList += jsonObject.results[i];
+					contactList += jsonObject.results[i];
 					if( i < jsonObject.results.length - 1 )
 					{
-						colorList += "<br />\r\n";
+						contactList += "<br />\r\n";
 					}
 				}
 				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 	
+}
+
+// We want multiple JSON objects
+
+
+function registerAccount()
+{
+	userId = 0;
+	// firstName = "";
+	// lastName = "";
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
+	let login = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
+	var hash = md5( password );
+	
+	document.getElementById("registerResult").innerHTML = "";
+
+	var tmp = {firstName:firstName,lastName:lastName,login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/Register.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{		
+					document.getElementById("registerResult").innerHTML = "Register failed, wtf";
+					return;
+				}
+				
+				// Not sure about this, we save it earlier
+				// firstName = jsonObject.firstName;
+				// lastName = jsonObject.lastName;
+
+				saveCookie();
+	
+				window.location.href = "contact.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
+	}
+
 }
