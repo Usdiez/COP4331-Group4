@@ -29,7 +29,7 @@
 			$stmt->close();
 			$conn->close();
 			http_response_code(200);
-			$searchResults .= '{' . '"ID":' . '"' . $id . '",' . '"firstName":' . '"' . $firstName . '",'  . '"lastName":' . '"' . $lastName . '}';
+			$searchResults .= '{' . '"ID":' . '"' . $id . '",' . '"firstName":' . '"' . $firstName . '",'  . '"lastName":' . '"' . $lastName . '"' . '}';
 
 			returnWithInfo($searchResults);
 		} 
