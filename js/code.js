@@ -202,20 +202,22 @@ function addContact() {
 
 // Function to search contact
 function searchContact() {
-  // retrieve search text from HTML element
-  let srch = document.getElementById("searchText").value;
+  let searchFirstName = document.getElementById("searchFirstName").value;
+  let searchLastName = document.getElementById("searchLastName").value;
+  let searchPhoneNum = document.getElementById("searchPhoneNum").value;
+  let searchEmail = document.getElementById("searchEmail").value;
 
-  // clear the search result
   document.getElementById("contactSearchResult").innerHTML = "";
 
-  // clear the list
-  let contactList = "";
+  let tmp = {
+    firstName: searchFirstName,
+    lastName: searchLastName,
+    phoneNumber: searchPhoneNum,
+    email: searchEmail,
+    userId: userId,
+  };
 
-  // prepare payload
-  let tmp = { search: srch, userId: userId };
   let jsonPayload = JSON.stringify(tmp);
-
-  // define URL for searching Contacts
   let url = urlBase + "/SearchContacts." + extension;
 
   let xhr = new XMLHttpRequest();
@@ -224,19 +226,42 @@ function searchContact() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        // contact(s) has been retrieved
         document.getElementById("contactSearchResult").innerHTML =
           "Contact(s) has been retrieved";
         let jsonObject = JSON.parse(xhr.responseText);
 
-        for (let i = 0; i < jsonObject.results.length; i++) {
-          contactList += jsonObject.results[i];
-          if (i < jsonObject.results.length - 1) {
-            contactList += "<br />\r\n";
-          }
-        }
+        let table = document.createElement("table");
+        table.setAttribute("border", "1");
 
-        document.getElementsByTagName("p")[0].innerHTML = contactList;
+        // Create table header
+        let headerRow = table.insertRow(0);
+        let headerCell1 = headerRow.insertCell(0);
+        headerCell1.innerHTML = "<b>ID</b>";
+        let headerCell2 = headerRow.insertCell(1);
+        headerCell2.innerHTML = "<b>First Name</b>";
+        let headerCell3 = headerRow.insertCell(2);
+        headerCell3.innerHTML = "<b>Last Name</b>";
+        let headerCell4 = headerRow.insertCell(3);
+        headerCell4.innerHTML = "<b>Email</b>";
+        let headerCell5 = headerRow.insertCell(4);
+        headerCell5.innerHTML = "<b>Phone Number</b>";
+
+        // Create table rows
+        jsonObject.results.forEach((contact, index) => {
+          let row = table.insertRow(index + 1);
+          let cell1 = row.insertCell(0);
+          cell1.innerHTML = contact.ID;
+          let cell2 = row.insertCell(1);
+          cell2.innerHTML = contact.firstName;
+          let cell3 = row.insertCell(2);
+          cell3.innerHTML = contact.lastName;
+          let cell4 = row.insertCell(3);
+          cell4.innerHTML = contact.email;
+          let cell5 = row.insertCell(4);
+          cell5.innerHTML = contact.phoneNumber;
+        });
+
+        document.getElementById("resultsContainer").appendChild(table);
       }
     };
     xhr.send(jsonPayload);
