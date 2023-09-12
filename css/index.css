@@ -1,61 +1,71 @@
-body {
-    background-color: #333333; /* Space gray background color */
-    color: white; /* Text color */
-    font-family: Arial, sans-serif;
-  }
 
-  #title {
-    text-align: center;
-    padding-top: 50px;
-  }
+      /* Add your CSS styles here */
+      body {
+        background-color: #333333; /* Space gray background color */
+        color: white; /* Text color */
+        font-family: Arial, sans-serif;
+      }
 
-  #loginDiv {
-    text-align: center;
-    margin: 0 auto;
-    max-width: 300px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  }
+      #center
+      {
+        display:flex;
+        flex-direction: column;
+      }
 
-  #inner-title {
-    font-size: 24px;
-  }
+      #title {
+        text-align: center;
+        padding-top: 50px;
+      }
 
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 5px -9px ;
-    border: none;
-    border-radius: 5px;
-    background-color: #ffffff; /* Input field background color */
-    color: rgb(255, 255, 255); /* Text color */
-  }
+      #loginDiv {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 300px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      }
 
-  button.buttons {
-    width: 100%;
-    padding: 10px;
-    background-color: #007acc; /* Button background color */
-    border: none;
-    border-radius: 5px;
-    color: white; /* Text color */
-    cursor: pointer;
-  }
+      #inner-title {
+        font-size: 24px;
+        display: block;
+        margin-bottom: 10px;
+      }
 
-  button.buttons:hover {
-    background-color: #00578e; /* Hover color */
-  }
+      input[type="text"],
+      input[type="password"] {
+        display: flex;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff; /* Input field background color */
+        color: rgb(0, 0, 0); /* Text color */
+      }
 
-  #loginResult {
-    color: red;
-  }
+      button.buttons {
+        width: 100%;
+        padding: 10px;
+        background-color: #007acc; /* Button background color */
+        border: none;
+        border-radius: 5px;
+        color: white; /* Text color */
+        cursor: pointer;
+      }
 
-  a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: white;
-    text-decoration: none;
-  }
+      button.buttons:hover {
+        background-color: #00578e; /* Hover color */
+      }
+
+      #loginResult {
+        color: red;
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+        text-decoration: none;
+      }
+      
