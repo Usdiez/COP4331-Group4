@@ -32,8 +32,8 @@
         margin: 5px 0;
         border: none;
         border-radius: 5px;
-        background-color: #555555; /* Input field background color */
-        color: white; /* Text color */
+        background-color: #ffffff; /* Input field background color */
+        color: rgb(255, 255, 255); /* Text color */
       }
 
       button.buttons {
