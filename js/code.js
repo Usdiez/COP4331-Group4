@@ -262,14 +262,20 @@ function searchContact() {
           cell4.innerHTML = contact.email;
           let cell5 = row.insertCell(4);
           cell5.innerHTML = contact.phoneNumber;
-
           let cell6 = row.insertCell(5);
+          let editButton = document.createElement("button");
+          editButton.innerHTML = "Edit";
+          editButton.onclick = function () {
+            // openPopup(contact.ID);
+          };
+          cell6.appendChild(editButton);
+          let cell7 = row.insertCell(6);
           let deleteButton = document.createElement("button");
           deleteButton.innerHTML = "Delete";
           deleteButton.onclick = function () {
             deleteContact(contact.ID);
           };
-          cell6.appendChild(deleteButton);
+          cell7.appendChild(deleteButton);
         });
 
         document.getElementById("resultsContainer").appendChild(table);
@@ -317,3 +323,52 @@ function deleteContact(contactId) {
     document.getElementById("contactDeleteResult").innerHTML = err.message;
   }
 }
+
+// // For pop up edit functionality
+// function openPopup(contact) {
+//   document.getElementById("editPopup").style.display = "flex";
+//   document.getElementById("editFirstName").value = contact.firstName;
+//   document.getElementById("editLastName").value = contact.lastName;
+//   document.getElementById("editPhoneNumber").value = contact.phoneNumber;
+//   document.getElementById("editEmail").value = contact.email;
+// }
+
+// function closePopup() {
+//   document.getElementById("editPopup").style.display = "none";
+// }
+
+// function editContact(contactId) {
+//   let firstName = document.getElementById("editFirstName").value;
+//   let lastName = document.getElementById("editLastName").value;
+//   let phoneNumber = document.getElementById("editPhoneNumber").value;
+//   let email = document.getElementById("editEmail").value;
+
+//   let tmp = {
+//     firstName: firstName,
+//     lastName: lastName,
+//     email: email,
+//     phoneNumber: phoneNumber,
+//     id: contactId,
+//     userId: userId,
+//   };
+
+//   let jsonPayload = JSON.stringify(tmp);
+//   let url = urlBase + "/EditContact." + extension;
+
+//   let xhr = new XMLHttpRequest();
+//   xhr.open("POST", url, true);
+//   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+//   try {
+//     xhr.onreadystatechange = function () {
+//       if (this.readyState == 4 && this.status == 200) {
+//         document.getElementById("contactEditResult").innerHTML =
+//           "Contact has been edited";
+//         closePopup();
+//         searchContact(); // refresh the search results
+//       }
+//     };
+//     xhr.send(jsonPayload);
+//   } catch (err) {
+//     document.getElementById("contactEditResult").innerHTML = err.message;
+//   }
+// }
