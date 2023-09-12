@@ -8,15 +8,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 500px;
+  }
+
+  #center
+  {
+    display:flex;
+    flex-direction: column;
   }
   
   #signUpDiv {
     
-    width: 70%;
     text-align: center;
-    max-width: 350px;
-    padding: 20px;
+    max-width: 550px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -28,13 +33,13 @@ body {
   
   input[type="text"],
   input[type="password"] {
-    width: 100%;
+    width: 300px;
     padding: 10px;
-    margin: 5px -9px;
+    margin: 9px 0px;
     border: none;
     border-radius: 5px;
     background-color: #ffffff; /* Input field background color */
-    color: rgb(255, 255, 255); /* Text color */
+    color: rgb(0, 0, 0); /* Text color */
   }
   
   button[type="button"] {
