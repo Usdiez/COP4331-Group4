@@ -1,43 +1,83 @@
 <html>
-<head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() 
-	{
-		readCookie();
-	}, false);
-	</script>
-	
-</head>
-<body>
+  <head>
+    <title>COP 4331 LAMP Stack Demo</title>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
 
-<h1 id="title">COP 4331 LAMP Stack group 4</h1>
+    <script type="text/javascript">
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+          readCookie();
+        },
+        false
+      );
+    </script>
+  </head>
+  <body>
+    <h1 id="title">COP 4331 LAMP Stack group 4</h1>
 
-<div id="loggedInDiv">
-	<span id="userName"></span><br />
-	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
-</div>
+    <div id="loggedInDiv">
+      <span id="userName"></span><br />
+      <button
+        type="button"
+        id="logoutButton"
+        class="buttons"
+        onclick="doLogout();"
+      >
+        Log Out
+      </button>
+    </div>
 
-<div id="accessUIDiv">
-	<br />
+    <div id="accessUIDiv">
+      <br />
 
-	<input type="text" id="searchText" placeholder="Contact To Search For"/>
-	<button type="button" id="searchContactButton" class="buttons" onclick="searchContact();"> Search Contact </button><br />
-	<span id="contactSearchResult"></span>
-	<p id="contactList">
-	</p><br /><br />
+      <input
+        type="text"
+        id="searchFirstName"
+        placeholder="Search by first name"
+      />
+      <input
+        type="text"
+        id="searchLastName"
+        placeholder="Search by last name"
+      />
+      <input
+        type="text"
+        id="searchPhoneNum"
+        placeholder="Search by phone number"
+      />
+      <input type="text" id="searchEmail" placeholder="Search by email" />
+      <button
+        type="button"
+        id="searchContactButton"
+        class="buttons"
+        onclick="searchContact();"
+      >
+        Search Contact</button
+      ><br />
+      <span id="contactSearchResult"></span>
+      <div id="resultsContainer"></div>
+      <br /><br />
 
-	<input type="text" id="firstName" placeholder="First Name">
-	<input type="text" id="lastName" placeholder="Last Name">
-	<input type="text" id="phoneNumber" placeholder="Address">
-	<input type="text" id="email" placeholder="Email">
-	<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
-	<span id="contactAddResult"></span>
-</div>
-
-</body>
+      <input type="text" id="firstName" placeholder="First Name" />
+      <input type="text" id="lastName" placeholder="Last Name" />
+      <input type="text" id="phoneNumber" placeholder="Phone Number" />
+      <input type="text" id="email" placeholder="Email" />
+      <button
+        type="button"
+        id="addContactButton"
+        class="buttons"
+        onclick="addContact();"
+      >
+        Add Contact</button
+      ><br />
+      <span id="contactAddResult"></span>
+      <span id="contactDeleteResult"></span>
+    </div>
+  </body>
 </html>

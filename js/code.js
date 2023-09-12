@@ -202,21 +202,26 @@ function addContact() {
 
 // Function to search contact
 function searchContact() {
-  // retrieve search text from HTML element
-  let srch = document.getElementById("searchText").value;
+  // Clear the results container
+  document.getElementById("resultsContainer").innerHTML = "";
 
-  // clear the search result
+  let searchFirstName = document.getElementById("searchFirstName").value;
+  let searchLastName = document.getElementById("searchLastName").value;
+  let searchPhoneNum = document.getElementById("searchPhoneNum").value;
+  let searchEmail = document.getElementById("searchEmail").value;
+
   document.getElementById("contactSearchResult").innerHTML = "";
 
-  // clear the list
-  let contactList = "";
+  let tmp = {
+    firstName: searchFirstName,
+    lastName: searchLastName,
+    phoneNumber: searchPhoneNum,
+    email: searchEmail,
+    userId: userId,
+  };
 
-  // prepare payload
-  let tmp = { search: srch, userId: userId };
   let jsonPayload = JSON.stringify(tmp);
-
-  // define URL for searching Contacts
-  let url = urlBase + "/SearchContacts." + extension;
+  let url = urlBase + "/SearchContact." + extension;
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -224,23 +229,91 @@ function searchContact() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        // contact(s) has been retrieved
         document.getElementById("contactSearchResult").innerHTML =
           "Contact(s) has been retrieved";
         let jsonObject = JSON.parse(xhr.responseText);
 
-        for (let i = 0; i < jsonObject.results.length; i++) {
-          contactList += jsonObject.results[i];
-          if (i < jsonObject.results.length - 1) {
-            contactList += "<br />\r\n";
-          }
-        }
+        let table = document.createElement("table");
+        table.setAttribute("border", "1");
 
-        document.getElementsByTagName("p")[0].innerHTML = contactList;
+        // Create table header
+        let headerRow = table.insertRow(0);
+        let headerCell1 = headerRow.insertCell(0);
+        headerCell1.innerHTML = "<b>ID</b>";
+        let headerCell2 = headerRow.insertCell(1);
+        headerCell2.innerHTML = "<b>First Name</b>";
+        let headerCell3 = headerRow.insertCell(2);
+        headerCell3.innerHTML = "<b>Last Name</b>";
+        let headerCell4 = headerRow.insertCell(3);
+        headerCell4.innerHTML = "<b>Email</b>";
+        let headerCell5 = headerRow.insertCell(4);
+        headerCell5.innerHTML = "<b>Phone Number</b>";
+
+        // Create table rows
+        jsonObject.results.forEach((contact, index) => {
+          let row = table.insertRow(index + 1);
+          let cell1 = row.insertCell(0);
+          cell1.innerHTML = contact.ID;
+          let cell2 = row.insertCell(1);
+          cell2.innerHTML = contact.firstName;
+          let cell3 = row.insertCell(2);
+          cell3.innerHTML = contact.lastName;
+          let cell4 = row.insertCell(3);
+          cell4.innerHTML = contact.email;
+          let cell5 = row.insertCell(4);
+          cell5.innerHTML = contact.phoneNumber;
+
+          let cell6 = row.insertCell(5);
+          let deleteButton = document.createElement("button");
+          deleteButton.innerHTML = "Delete";
+          deleteButton.onclick = function () {
+            deleteContact(contact.ID);
+          };
+          cell6.appendChild(deleteButton);
+        });
+
+        document.getElementById("resultsContainer").appendChild(table);
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
     document.getElementById("contactSearchResult").innerHTML = err.message;
+  }
+}
+
+// Function to delete contact
+function deleteContact(contactId) {
+  let tmp = {
+    userId: userId,
+    id: contactId,
+  };
+
+  let jsonPayload = JSON.stringify(tmp);
+  let url = urlBase + "/DeleteContact." + extension;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("contactDeleteResult").innerHTML =
+          "Contact has been deleted";
+
+        // Directly remove the row of the deleted contact from the table
+        let table = document
+          .getElementById("resultsContainer")
+          .getElementsByTagName("table")[0];
+        for (let i = 1, row; (row = table.rows[i]); i++) {
+          if (row.cells[0].innerHTML == contactId) {
+            table.deleteRow(i);
+            break;
+          }
+        }
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    document.getElementById("contactDeleteResult").innerHTML = err.message;
   }
 }
