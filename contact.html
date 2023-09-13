@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>COP 4331 LAMP Stack Demo</title>
+    <title>Space Links</title>
     <script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet" />
     <link
@@ -18,82 +18,84 @@
       );
     </script>
   </head>
-  <body>
-    <h1 id="title">COP 4331 LAMP Stack group 4</h1>
-
-    <div id="loggedInDiv">
-      <span id="userName"></span><br />
-      <button
-        type="button"
-        id="logoutButton"
-        class="buttons"
-        onclick="doLogout();"
-      >
-        Log Out
-      </button>
-    </div>
-
-    <div id="accessUIDiv">
-      <br />
-      <!--Search-->
-      <input
-        type="text"
-        id="searchFirstName"
-        placeholder="Search by first name"
-      />
-      <input
-        type="text"
-        id="searchLastName"
-        placeholder="Search by last name"
-      />
-      <input
-        type="text"
-        id="searchPhoneNum"
-        placeholder="Search by phone number"
-      />
-      <input type="text" id="searchEmail" placeholder="Search by email" />
-      <button
-        type="button"
-        id="searchContactButton"
-        class="buttons"
-        onclick="searchContact();"
-      >
-        Search Contact</button
-      ><br />
-
-      <span id="contactSearchResult"></span>
-      <div id="resultsContainer"></div>
-      <br /><br />
-
-      <!--Edit-->
-      <!-- <span id="contactEditResult"></span>
-      <div id="editPopup" class="popup">
-        <div class="popup-content">
-          <span class="close" onclick="closePopup()">&times;</span>
-          <input type="text" id="editContactID" placeholder="ContactID" />
-          <input type="text" id="editFirstName" placeholder="First Name" />
-          <input type="text" id="editLastName" placeholder="Last Name" />
-          <input type="text" id="editPhoneNumber" placeholder="Phone Number" />
-          <input type="text" id="editEmail" placeholder="Email" />
-          <button type="button" onclick="editContact()">Save</button>
-        </div>
-      </div> -->
-
-      <!--Creation-->
-      <input type="text" id="firstName" placeholder="First Name" />
-      <input type="text" id="lastName" placeholder="Last Name" />
-      <input type="text" id="phoneNumber" placeholder="Phone Number" />
-      <input type="text" id="email" placeholder="Email" />
-      <button
-        type="button"
-        id="addContactButton"
-        class="buttons"
-        onclick="addContact();"
-      >
-        Add Contact</button
-      ><br />
-      <span id="contactAddResult"></span>
-      <span id="contactDeleteResult"></span>
-    </div>
-  </body>
+  <div id="center">
+    <body>
+      <h1 id="title">Contacts</h1>
+  
+      <div id="loggedInDiv">
+        <span id="userName"></span><br />
+        <button
+          type="button"
+          id="logoutButton"
+          class="buttons"
+          onclick="doLogout();"
+        >
+          Log Out
+        </button>
+      </div>
+  
+      <div id="accessUIDiv">
+        <br />
+        <!--Search-->
+        <input
+          type="text"
+          id="searchFirstName"
+          placeholder="Search by first name"
+        />
+        <input
+          type="text"
+          id="searchLastName"
+          placeholder="Search by last name"
+        />
+        <input
+          type="text"
+          id="searchPhoneNum"
+          placeholder="Search by phone number"
+        />
+        <input type="text" id="searchEmail" placeholder="Search by email" />
+        <button
+          type="button"
+          id="searchContactButton"
+          class="buttons"
+          onclick="searchContact();"
+        >
+          Search Contact</button
+        ><br />
+  
+        <span id="contactSearchResult"></span>
+        <div id="resultsContainer"></div>
+        <br /><br />
+  
+        <!--Edit-->
+        <!-- <span id="contactEditResult"></span>
+        <div id="editPopup" class="popup">
+          <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <input type="text" id="editContactID" placeholder="ContactID" />
+            <input type="text" id="editFirstName" placeholder="First Name" />
+            <input type="text" id="editLastName" placeholder="Last Name" />
+            <input type="text" id="editPhoneNumber" placeholder="Phone Number" />
+            <input type="text" id="editEmail" placeholder="Email" />
+            <button type="button" onclick="editContact()">Save</button>
+          </div>
+        </div> -->
+  
+        <!--Creation-->
+        <input type="text" id="firstName" placeholder="First Name" />
+        <input type="text" id="lastName" placeholder="Last Name" />
+        <input type="text" id="phoneNumber" placeholder="Phone Number" />
+        <input type="text" id="email" placeholder="Email" />
+        <button
+          type="button"
+          id="addContactButton"
+          class="buttons"
+          onclick="addContact();"
+        >
+          Add Contact</button
+        ><br />
+        <span id="contactAddResult"></span>
+        <span id="contactDeleteResult"></span>
+      </div>
+    </body>
+  </div>
 </html>

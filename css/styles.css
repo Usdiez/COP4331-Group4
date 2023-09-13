@@ -1,57 +1,67 @@
 body 
 {
-    background-color: #707070;
+    background-color: #333333;
+}
+
+#center
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #title 
 {
     font-size: 40px;
     width: 100%;
-    margin: 2% 5%;
     text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
 }
 
 #loginDiv
 {
     font-size: 30px;
+    margin-top: 5%;
     width: 70%;
-    margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: #000000;
 }
 
 #loggedInDiv
 {
     font-size: 30px;
+    margin: 0 auto;
     width: 70%;
-    margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #ffffff;
 }
 
 #accessUIDiv
 {
     font-size: 30px;
+    margin: 0 auto;
     width: 70%;
-    margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #000000;
 }
 
 .buttons
 {
     font-size: 30px;
-    border-radius: 25px;
+    border-radius: 5px;
     width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #007acc; /* Button background color */
 }
 
 .buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
+    background-color: #00578e; /* Hover color */
+    color: #000000;
     opacity: 50%;
 }
 
@@ -73,12 +83,14 @@ body
 }
 
 input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    width: 300px;
+        display: flex;
+        margin-bottom: 2%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff; /* Input field background color */
+        color: rgb(0, 0, 0); /* Text color */
 }
 
 #inner-title{
@@ -88,7 +100,7 @@ input[type="text"],input[type="password"]{
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Arial, sans-serif;
     color: #95060a;
 }
 
@@ -99,7 +111,7 @@ input[type="text"],input[type="password"]{
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Arial, sans-serif;
     color: #95060a;
 }
 
@@ -120,7 +132,7 @@ select{
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 #colorSearchResult{
@@ -135,6 +147,6 @@ select{
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Arial, sans-serif;
     color: #95060a;
 }
