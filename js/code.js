@@ -376,7 +376,7 @@ function editContact() {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         // TODO: handle success
-        // window.location.href = "contact.html";
+        window.location.href = "contact.html";
       } else {
         // TODO: handle failure
       }
