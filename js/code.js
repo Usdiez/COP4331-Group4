@@ -48,9 +48,9 @@ function signUp() {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         let jsonObject = JSON.parse(xhr.responseText);
-        userId = jsonObject.id;
+        userId = jsonObject.results?.ID;
 
-        if (userId < 1) {
+        if (userId == undefined || userId < 1) {
           document.getElementById("signUpResult").innerHTML =
             "Sign Up failed, wtf";
           return;
