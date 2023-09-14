@@ -156,3 +156,10 @@ select{
     font-family: Arial, sans-serif;
     color: #95060a;
 }
+table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid rgb(0, 0, 0);
+    color: white;
+  }
