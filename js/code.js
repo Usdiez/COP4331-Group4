@@ -287,7 +287,16 @@ function searchContact() {
           let deleteButton = document.createElement("button");
           deleteButton.innerHTML = "Delete";
           deleteButton.onclick = function () {
-            deleteContact(contact.ID);
+            var result = confirm("Are you sure you want to delete this item?");
+
+            if (result == true) {
+              // User clicked 'OK'
+              // Your code to delete the item
+              deleteContact(contact.ID);
+            } else {
+              // User clicked 'Cancel' or closed the dialog
+              // Your code for cancel action
+            }
           };
           cell7.appendChild(deleteButton);
         });
