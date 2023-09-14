@@ -32,10 +32,14 @@ body
 
 #loggedInDiv
 {
+    border-top-left-radius: 10px 10px;
+    border-top-right-radius: 10px 10px;
     margin: 0 auto;
     font-size: 15px;
     width: 25%;
-    padding: 25px;
+    padding-top: 15px;
+    padding-left: 22.5px;
+    padding-right: 22.5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     color: #ffffff;
@@ -47,7 +51,11 @@ body
     font-size: 25px;
     margin: 0 auto;
     width: 25%;
-    padding: 25px;
+    padding-left: 22.5px;
+    padding-right: 22.5px;
+    padding-bottom: 15px;
+    border-bottom-left-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     color: #ffffff;
@@ -57,10 +65,12 @@ body
 {
     font-size: 15px;
     border-radius: 5px;
+    padding: 9px;
     width: 100%;
     font-family: Arial, sans-serif;
     color: white; /* Text color */
     background-color: #007acc; /* Button background color */
+    border: none;
 }
 
 .buttons:hover{
@@ -90,7 +100,7 @@ body
 input[type="text"],input[type="password"]{
         width: 100%;
         display: flex;
-        margin-bottom: 2%;
+        margin-bottom: 2.5%;
         padding: 10px;
         border: none;
         border-radius: 5px;
@@ -160,6 +170,6 @@ table {
     table-layout: auto;
     width: 100%;
     border-collapse: collapse;
-    border: 3px solid rgb(0, 0, 0);
+    border: thick #ffffff;
     color: white;
   }
