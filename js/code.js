@@ -5,6 +5,23 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+document.addEventListener("DOMContentLoaded", function () {
+  // all your event listeners here
+
+  document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("edit-button")) {
+      const id = event.target.getAttribute("data-id");
+      window.location.href = "editContact.html?id=" + id;
+    }
+  });
+
+  // other event listeners...
+
+  // ...
+});
+
+// other functions and code...
+
 function signUp() {
   userId = 0;
   firstName = "";
@@ -265,9 +282,9 @@ function searchContact() {
           let cell6 = row.insertCell(5);
           let editButton = document.createElement("button");
           editButton.innerHTML = "Edit";
-          editButton.onclick = function () {
-            // openPopup(contact.ID);
-          };
+          editButton.setAttribute("data-id", contact.ID); // set the data-id attribute
+          editButton.classList.add("edit-button"); // add the edit-button class
+
           cell6.appendChild(editButton);
           let cell7 = row.insertCell(6);
           let deleteButton = document.createElement("button");
@@ -324,51 +341,57 @@ function deleteContact(contactId) {
   }
 }
 
-// // For pop up edit functionality
-// function openPopup(contact) {
-//   document.getElementById("editPopup").style.display = "flex";
-//   document.getElementById("editFirstName").value = contact.firstName;
-//   document.getElementById("editLastName").value = contact.lastName;
-//   document.getElementById("editPhoneNumber").value = contact.phoneNumber;
-//   document.getElementById("editEmail").value = contact.email;
-// }
+function editContact() {
+  const id = parseInt(new URLSearchParams(window.location.search).get("id"));
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const phoneNumber = document.getElementById("phoneNumber").value;
+  const email = document.getElementById("email").value;
 
-// function closePopup() {
-//   document.getElementById("editPopup").style.display = "none";
-// }
+  userId = getCookie();
+  const tmp = {
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+    email: email,
+    id: id,
+    userId: userId,
+  };
 
-// function editContact(contactId) {
-//   let firstName = document.getElementById("editFirstName").value;
-//   let lastName = document.getElementById("editLastName").value;
-//   let phoneNumber = document.getElementById("editPhoneNumber").value;
-//   let email = document.getElementById("editEmail").value;
+  const jsonPayload = JSON.stringify(tmp);
+  const url = urlBase + "/EditContact." + extension;
 
-//   let tmp = {
-//     firstName: firstName,
-//     lastName: lastName,
-//     email: email,
-//     phoneNumber: phoneNumber,
-//     id: contactId,
-//     userId: userId,
-//   };
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        // TODO: handle success
+        // window.location.href = "contact.html";
+      } else {
+        // TODO: handle failure
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    // TODO: handle error
+  }
+}
 
-//   let jsonPayload = JSON.stringify(tmp);
-//   let url = urlBase + "/EditContact." + extension;
-
-//   let xhr = new XMLHttpRequest();
-//   xhr.open("POST", url, true);
-//   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//   try {
-//     xhr.onreadystatechange = function () {
-//       if (this.readyState == 4 && this.status == 200) {
-//         document.getElementById("contactEditResult").innerHTML =
-//           "Contact has been edited";
-//         closePopup();
-//         searchContact(); // refresh the search results
-//       }
-//     };
-//     xhr.send(jsonPayload);
-//   } catch (err) {
-//     document.getElementById("contactEditResult").innerHTML = err.message;
-//   }
-// }
+function getCookie() {
+  const value = "; " + document.cookie;
+  const parts = value.split("; ");
+  for (let i = 0; i < parts.length; i++) {
+    const cookiePart = parts[i];
+    if (cookiePart.includes("firstName")) {
+      const cookies = cookiePart.split(",");
+      for (let j = 0; j < cookies.length; j++) {
+        const cookie = cookies[j];
+        if (cookie.includes("userId")) {
+          return parseInt(cookie.split("=")[1]);
+        }
+      }
+    }
+  }
+}
