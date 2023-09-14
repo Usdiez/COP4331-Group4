@@ -5,6 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+// One event listener... I only use it for the edit button
 document.addEventListener("DOMContentLoaded", function () {
   // all your event listeners here
 
@@ -14,14 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "editContact.html?id=" + id;
     }
   });
-
-  // other event listeners...
-
-  // ...
 });
 
-// other functions and code...
-
+// Registers the user
+// Currently does not hash the password.
 function signUp() {
   userId = 0;
   firstName = "";
@@ -341,6 +338,8 @@ function deleteContact(contactId) {
   }
 }
 
+// Bring user to new HTML page and allows them to edit boxes
+// Prefilled input boxes to edit still needs to be added
 function editContact() {
   const id = parseInt(new URLSearchParams(window.location.search).get("id"));
   const firstName = document.getElementById("firstName").value;
@@ -379,6 +378,7 @@ function editContact() {
   }
 }
 
+// Only gets the userId from the cookie
 function getCookie() {
   const value = "; " + document.cookie;
   const parts = value.split("; ");
