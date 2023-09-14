@@ -3,7 +3,6 @@
       body {
         background-image: url('earth.jpg'); /* Set the background image URL */
         background-size: cover;
-        background-position: center;
         background-repeat: no-repeat;
         color: white; /* Text color */
         font-family: Arial, sans-serif;
@@ -23,7 +22,7 @@
 
       #title {
         text-align: center;
-        padding-top: 50px;
+        text-shadow: 0 0 15px #000000, 0 0 20px #000000;
       }
 
       #loginDiv {

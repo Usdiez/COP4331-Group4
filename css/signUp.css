@@ -2,7 +2,6 @@
 body {
   background-image: url('earth.jpg'); /* Set the background image URL */
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
   color: white; /* Text color */
   font-family: Arial, sans-serif;
@@ -11,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 780px;
 }
 
 
