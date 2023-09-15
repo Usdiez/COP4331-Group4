@@ -281,8 +281,7 @@ function searchContact() {
           editButton.innerHTML = "&#9998;"; // Edit symbol (pencil icon)
           editButton.setAttribute("data-id", contact.ID); // set the data-id attribute
           editButton.classList.add("edit-button"); // add the edit-button class
-          editButton.style.backgroundColor = "green";
-
+          
           cell6.appendChild(editButton);
           let cell7 = row.insertCell(6);
           let deleteButton = document.createElement("button");
