@@ -3,6 +3,7 @@ body
     background-image: url('earth.jpg'); /* Set the background image URL */
     background-size: cover;
     background-repeat: no-repeat;
+    
 }
 
 #center
