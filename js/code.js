@@ -278,14 +278,16 @@ function searchContact() {
           cell5.innerHTML = contact.phoneNumber;
           let cell6 = row.insertCell(5);
           let editButton = document.createElement("button");
-          editButton.innerHTML = "Edit";
+          editButton.innerHTML = "&#9998;"; // Edit symbol (pencil icon)
           editButton.setAttribute("data-id", contact.ID); // set the data-id attribute
           editButton.classList.add("edit-button"); // add the edit-button class
+          editButton.style.backgroundColor = "green";
 
           cell6.appendChild(editButton);
           let cell7 = row.insertCell(6);
           let deleteButton = document.createElement("button");
-          deleteButton.innerHTML = "Delete";
+          deleteButton.innerHTML = "&#128465;";
+          deleteButton.style.backgroundColor = "red";
           deleteButton.onclick = function () {
             var result = confirm("Are you sure you want to delete this item?");
 
