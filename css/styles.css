@@ -158,3 +158,8 @@ table {
     color: white;
     margin-bottom: 25px;
   }
+/* Add this to your CSS */
+button.delete-button {
+    background-color: red;
+    color: white;
+}
