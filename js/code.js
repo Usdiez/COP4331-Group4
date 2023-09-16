@@ -259,9 +259,9 @@ function searchContact() {
         let headerCell3 = headerRow.insertCell(2);
         headerCell3.innerHTML = "<b>Last Name</b>";
         let headerCell4 = headerRow.insertCell(3);
-        headerCell4.innerHTML = "<b>Email</b>";
+        headerCell4.innerHTML = "<b>Phone Number</b>";
         let headerCell5 = headerRow.insertCell(4);
-        headerCell5.innerHTML = "<b>Phone Number</b>";
+        headerCell5.innerHTML = "<b>Email</b>";
 
         // Create table rows
         jsonObject.results.forEach((contact, index) => {
@@ -273,9 +273,9 @@ function searchContact() {
           let cell3 = row.insertCell(2);
           cell3.innerHTML = contact.lastName;
           let cell4 = row.insertCell(3);
-          cell4.innerHTML = contact.email;
+          cell4.innerHTML = contact.phoneNumber;
           let cell5 = row.insertCell(4);
-          cell5.innerHTML = contact.phoneNumber;
+          cell5.innerHTML = contact.email;
           let cell6 = row.insertCell(5);
           let editButton = document.createElement("button");
           editButton.innerHTML = "&#9998;"; // Edit symbol (pencil icon)
