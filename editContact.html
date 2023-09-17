@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Contact</title>
+    <link href="css/EditContact.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id = "BlackBackgound">
+      <form id="editForm">
+        <input type="text" id="firstName" placeholder="First Name" />
+        <input type="text" id="lastName" placeholder="Last Name" />
+        <input type="text" id="phoneNumber" placeholder="Phone Number" />
+        <input type="text" id="email" placeholder="Email" />
+        <button type="button" id="saveButton" onclick="editContact()">
+          Save
+        </button>
+        <button type="button" id="backButton" onclick="backToContactPage();">
+          Back
+        </button>
+      </form>
+      <script src="js/code.js"></script>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+  </script>
+  <script>
+    function backToContactPage() {
+      window.location.href = "contact.html"; // change this to your contact page URL
+    }
+  </script>
+</html>

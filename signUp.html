@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link rel="stylesheet" href="css/signUp.css" /> <!-- new stuff for testing -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="center">
+      <div id="signUpDiv">
+        <h2>Sign Up</h2>
+        <input
+          type="text"
+          id="firstName"
+          placeholder="First name"
+          required
+        /><br />
+        <input type="text" id="lastName" placeholder="Last name" required /><br />
+        <input type="text" id="username" placeholder="Username" required /><br />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          required
+        /><br />
+        <!-- We can add confirm password validation later -->
+        <button type="button" id="signUpButton" onclick="signUp();">
+          Sign Up
+        </button>
+        <button type="button" id="backButton" onclick="backToLogin();">
+          Back
+        </button>
+        <span id="signUpResult"></span>
+      </div>
+  
+      <script>
+        function backToLogin() {
+          window.location.href = "index.html"; // change this to your login page URL
+        }
+      </script>
+    </div>
+  </body>
+</html>

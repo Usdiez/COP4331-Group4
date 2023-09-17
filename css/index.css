@@ -1,0 +1,150 @@
+
+      /* Add your CSS styles here */
+      body {
+        background-image: url('earth.jpg'); /* Set the background image URL */
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white; /* Text color */
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow:hidden;
+      }
+
+      #center
+      {
+        display:flex;
+        flex-direction: column;
+      }
+
+      #title {
+        text-align: center;
+        text-shadow: 0 0 15px #000000, 0 0 20px #000000;
+      }
+
+      #loginDiv {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 550px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      }
+
+      #inner-title {
+        font-size: 24px;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 300px;
+        display: flex;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff; /* Input field background color */
+        color: rgb(0, 0, 0); /* Text color */
+      }
+
+      button.buttons {
+        width: 100%;
+        padding: 10px;
+        background-color: #007acc; /* Button background color */
+        border: none;
+        border-radius: 5px;
+        color: white; /* Text color */
+        cursor: pointer;
+      }
+
+      button.buttons:hover {
+        background-color: #00578e; /* Hover color */
+      }
+
+      #loginResult {
+        color: red;
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        text-shadow: 0 0 15px #000000, 0 0 20px #000000;
+      }
+      
+       span{
+         position:absolute;
+         top:0%;
+         left:50%;
+         width:1px;
+         height:2px;
+         background:white;
+         border-radius:50%;
+         box-shadow:0 0 0 1px white;
+         animation:shootingStar 3s linear infinite;
+       }
+       span::before{
+        content:'';
+        position:absolute;
+        top:50%;
+        width:350px;
+        height:1px;
+        background:linear-gradient(90deg,#fff,transparent);
+        
+      }
+      @keyframes shootingStar{
+        0%{
+          transform:rotate(300deg) translate(0);
+          opacity: 1;
+        }
+        100%{
+          transform:rotate(300deg) translate(-2000px);
+          opacity: 0;
+        }
+      }
+      
+      span:nth-child(1){
+        top:0;
+        right:200px;
+        animation-duration: 8s;
+      }
+      span:nth-child(2){
+        top:50px;
+        right:100px;
+        animation-duration: 7s;
+      }
+      span:nth-child(3){
+        top:100px;
+        right:80px;
+        animation-duration: 6s;
+      }
+      span:nth-child(4){
+        top:200px;
+        right:300px;
+        animation-duration: 4.5s;
+      }
+      span:nth-child(5){
+        top:-400px;
+        right:400px;
+        animation-duration: 3s;
+      }
+      span:nth-child(6){
+        top:-200px;
+        right:-200px;
+        animation-duration: 4s;
+      }
+      span:nth-child(7){
+        top:-100px;
+        right:-100px;
+        animation-duration: 5s;
+      }
+       

@@ -1,0 +1,51 @@
+/* Add your CSS styles here */
+body {
+    background-image: url('earth.jpg'); /* Set the background image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white; /* Text color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  #BlackBackgound {
+    
+    text-align: center;
+    /* width: max-content; */
+    max-width: 250px;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  }
+
+  button{
+    width: 117px;
+    min-width: 5%; 
+    padding: 15px;
+    background-color: #007acc; /* Button background color */
+    border: none;
+    border-radius: 5px;
+    color: white; /* Text color */
+    cursor: pointer;
+    margin: 0.75%;
+  }
+
+  button.buttons:hover {
+    background-color: #00578e; /* Hover color */
+  }
+
+  input
+  {
+    border-radius: 5px;
+    margin: 1.5%;
+    padding: 10px;
+    outline: none;
+    width: calc(100% - 30px); /* Adjust the width to account for padding */
+    font-size: 15px; /* Increase font size for larger text */
+  }
