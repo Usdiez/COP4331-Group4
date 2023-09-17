@@ -286,8 +286,10 @@ function searchContact() {
           cell6.appendChild(editButton);
           let cell7 = row.insertCell(6);
           let deleteButton = document.createElement("button");
-          deleteButton.innerHTML = "&#128465;";
-          deleteButton.style.backgroundColor = "red";
+          deleteButton.innerHTML = '<img src="js/trash-bin.png" alt="Trash Bin" style="width:25px">';
+          deleteButton.style.backgroundColor = "transparent";
+          deleteButton.style.border= "none";
+          deleteButton.style.padding= "none";
         
           deleteButton.onclick = function () {
             var result = confirm("Are you sure you want to delete this item?");
